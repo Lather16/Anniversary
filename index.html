@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080509" />
+  <title>Our Little Story ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+    <main class="phone-shell">
+      <section id="lock-screen" class="screen active">
+        <div class="lock-card glass">
+          <div class="days-banner">
+            <div class="days-tag">✨ OUR LOVE STORY ✨</div>
+            <div class="days-counter-display">
+              <span id="daysCount" class="days-number">0</span>
+              <span class="days-text">DAYS</span>
+            </div>
+            <div class="days-subtitle">and counting every beautiful moment ♥</div>
+          </div>
+
+          <div class="lock-divider"><span>♥</span></div>
+
+          <div class="eyebrow">A LITTLE LOVE CHECK <span>♥</span></div>
+          <h1>Answer to unlock our story <span>♥</span></h1>
+          <p class="question" id="questionText">What's my favorite dessert?</p>
+          <input id="answerInput" autocomplete="off" placeholder="Type your answer..." />
+          <div id="errorText" class="error"></div>
+          <button id="unlockBtn" class="primary">Unlock</button>
+          <div class="progress">Question <span id="questionNo">1</span> of 2</div>
+        </div>
+      </section>
+
+      <section id="game-screen" class="screen">
+        <div class="top-copy">
+          <div class="eyebrow">A LITTLE MEMORY GAME</div>
+          <h2>Match the photo pairs</h2>
+          <p>Find all the matching pairs to reveal the surprise.</p>
+        </div>
+        <div id="board" class="board"></div>
+        <div class="game-footer">
+          <span id="moves">0 moves</span>
+          <span id="pairs">0 / 8 pairs</span>
+        </div>
+      </section>
+
+      <section id="proposal-screen" class="screen">
+        <div class="proposal-wrap">
+          <div class="photo-collage" id="collage"></div>
+          <div class="proposal-content">
+            <div class="eyebrow">ONE LAST QUESTION</div>
+            <h2>Will you be my Valentine?</h2>
+            <div class="tiny-heart">♡</div>
+            <div class="proposal-actions">
+              <button id="yesBtn" class="primary">Yes, I will! 💗</button>
+              <button id="maybeBtn" class="secondary">Not yet 🤭</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="final-screen" class="screen">
+        <div class="final-content">
+          <div class="fireworks" aria-hidden="true"></div>
+          <div class="eyebrow">OUR STORY CONTINUES</div>
+          <h2>Thank you for accepting.<br>I love you! 💗</h2>
+          <p class="final-subtext">For more beautiful moments, more memories, and many more anniversaries together.</p>
+          <div class="final-heart">♥</div>
+
+          <!-- Cute Love Letter Envelope (Click to open) -->
+          <div class="envelope-container" id="envelopeWrapper">
+            <button id="openLetterBtn" class="envelope-card-btn" aria-label="Open Love Letter">
+              <div class="envelope-graphic">
+                <div class="envelope-flap" id="envelopeFlap"></div>
+                <div class="envelope-pocket">
+                  <div class="wax-seal" id="waxSeal">
+                    <span class="seal-heart">♥</span>
+                  </div>
+                  <div class="envelope-badge">🧸</div>
+                </div>
+              </div>
+              <div class="envelope-info">
+                <div class="envelope-pill">✨ IK KHAAS CHITTHI ✨</div>
+                <h3 class="envelope-title">Open My Love Letter 💌</h3>
+                <p class="envelope-desc">Dil diyan gehraiyan cho likhya ik bhot pyara paigaam (Tap to open)</p>
+              </div>
+            </button>
+          </div>
+
+          <!-- The Big Unfolded Love Letter (Punjabi & Hindi) -->
+          <div id="loveLetterModal" class="love-letter-wrapper" style="display: none;">
+            <div class="love-letter-parchment">
+              <!-- Cute corner stickers -->
+              <div class="letter-corner-deco top-left">✨</div>
+              <div class="letter-corner-deco top-right">🌸</div>
+              <div class="letter-corner-deco bottom-left">🧸</div>
+              <div class="letter-corner-deco bottom-right">🌹</div>
+
+              <div class="letter-header">
+                <div class="letter-date-chip">💍 2558 DIN DA PYAR • FOREVER & ALWAYS ♥</div>
+                <h3 class="letter-recipient">ਮੇਰੀ ਜਾਨ, ਮੇਰੀ ਰੂਹ, ਮੇਰੀ ਸਭ ਤੋਂ ਸੋਹਣੀ ਪਰੀ... 🌸</h3>
+                <div class="letter-subhead">Meri Jaan, Meri Zindagi, Meri Sab Toh Pyari Pari</div>
+                <div class="letter-flourish">❦ • ════ • ♥ • ════ • ❦</div>
+              </div>
+
+              <div class="letter-body">
+                <!-- Section 1 -->
+                <div class="letter-chapter">
+                  <div class="chapter-badge">✨ 2558 Din Da Pyara Safar</div>
+                  <p class="punjabi-text"><strong>ਸੱਚੀ ਮੇਰੀ ਜਾਨ,</strong> ਮੈਂ ਕਿੰਨਾ ਵੀ ਲਿਖ ਲਵਾਂ, ਮੇਰੇ ਕੋਲ ਲਫ਼ਜ਼ ਘੱਟ ਪੈ ਜਾਂਦੇ ਨੇ ਜਦ ਵੀ ਗੱਲ ਤੇਰੇ ਬਾਰੇ ਆਉਂਦੀ ਹੈ। ਅੱਜ ਪੂਰੇ <strong>2558 ਦਿਨ</strong> ਹੋ ਗਏ ਨੇ ਸਾਨੂੰ ਇਕੱਠੇ, ਇੱਕ ਦੂਜੇ ਦਾ ਹੱਥ ਫੜੇ ਹੋਏ... ਪਰ ਰੱਬ ਦੀ ਸੌਂਹ, ਇੰਝ ਲੱਗਦਾ ਹੈ ਜਿਵੇਂ ਕੱਲ੍ਹ ਦੀ ਹੀ ਗੱਲ ਹੋਵੇ ਜਦੋਂ ਤੈਨੂੰ ਪਹਿਲੀ ਵਾਰ ਦੇਖਿਆ ਸੀ।</p>
+                  <p class="hinglish-text">Jab pehli baar tenu vekheya si, dil ne chupke se keh ditta si ki haan, yahi hai wo pari jiske naal saari umar bitaani hai. Rab da lakh-lakh shukar hai ki usne meri kismat tere naal jod ditti. Meri be-rang zindagi vich sache rang bharn wali sirf te sirf tu hai meri jaan.</p>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="letter-chapter">
+                  <div class="chapter-badge">💖 Tere Naal Mera Sukoon</div>
+                  <p class="punjabi-text">ਤੈਨੂੰ ਪਤਾ ਹੈ? ਦੁਨੀਆ ਵਿੱਚ ਲੱਖਾਂ ਲੋਕ ਨੇ, ਪਰ ਜੋ ਸੁਕੂਨ, ਜੋ ਅਪਣਾਪਨ ਤੇਰੀਆਂ ਅੱਖਾਂ ਵਿੱਚ ਮਿਲਦਾ ਹੈ ਨਾ, ਉਹ ਪੂਰੀ ਕਾਇਨਾਤ ਵਿੱਚ ਕਿਤੇ ਵੀ ਨਹੀਂ। ਜਦੋਂ ਵੀ ਮੈਂ ਥੱਕ ਜਾਂਦਾ ਹਾਂ ਜਾਂ ਪਰੇਸ਼ਾਨ ਹੁੰਦਾ ਹਾਂ, ਬਸ ਤੇਰਾ ਇੱਕ ਵਾਰ ਹੱਸ ਕੇ ਪਿਆਰ ਨਾਲ <em>"ਕੀ ਹੋਇਆ ਜੀ?"</em> ਕਹਿਣਾ... ਮੇਰੀ ਸਾਰੀ ਥਕਾਨ, ਸਾਰੀ ਚਿੰਤਾ ਇੱਕ ਪਲ ਵਿੱਚ ਉਡਾ ਦਿੰਦਾ ਹੈ।</p>
+                  <p class="hinglish-text">Tu sirf mera pyaar nahi, tu mera safe space hai, mera sukoon hai, aur meri zindagi da sabse khoobsurat hissa hai. Tere bina ek pal vi rehna mere layi na-mumkin lagda hai.</p>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="letter-chapter">
+                  <div class="chapter-badge">🧸 Teriyan Nikiyan Gallan Te Pyare Nakhre</div>
+                  <p class="punjabi-text">ਤੇਰੇ ਉਹ ਨਿੱਕੇ-ਨਿੱਕੇ ਬੱਚਿਆਂ ਵਾਂਗੂ ਰੁੱਸਣਾ, ਫਿਰ ਥੋੜ੍ਹੀ ਦੇਰ ਬਾਅਦ ਆਪ ਹੀ ਪਿਆਰ ਨਾਲ ਮੰਨ ਜਾਣਾ... ਤੇਰੀਆਂ ਉਹ ਮਿੱਠੀਆਂ-ਮਿੱਠੀਆਂ ਗੱਲਾਂ, ਗੱਲ-ਗੱਲ 'ਤੇ ਮੂੰਹ ਬਣਾਉਣਾ, ਤੇ ਮੇਰੇ ਸਾਹਮਣੇ ਨਖਰੇ ਦਿਖਾਉਣਾ — ਹਾਂ ਸੱਚ ਕਹਿੰਦਾ ਹਾਂ, ਮੈਂ ਤੇਰੇ ਹਰ ਇੱਕ ਨਖਰੇ 'ਤੇ ਫਿਦਾ ਹਾਂ!</p>
+                  <p class="hinglish-text">Jad tu khid-khida ke hasti hai na, aisa lagta hai maano saari duniya ch gulab khil gaye hon. Teri muskurahat meri sabse badi khushi hai. Meri har subah di pehli soch tu hai, te raat nu son lagge aakhri dua vi tu hi hondi hai.</p>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="letter-chapter">
+                  <div class="chapter-badge">🤝 Har Mod Te Tera Saath</div>
+                  <p class="punjabi-text">ਇਹਨਾਂ 2558 ਦਿਨਾਂ ਦੇ ਸਫ਼ਰ ਵਿੱਚ ਹਾਸੇ ਵੀ ਸਨ, ਕਦੇ-ਕਦੇ ਛੋਟੇ-ਮੋਟੇ ਝਗੜੇ ਵੀ ਹੋਏ, ਪਰ ਸਭ ਤੋਂ ਵੱਡੀ ਗੱਲ ਇਹ ਹੈ ਕਿ ਹਰ ਮੋੜ 'ਤੇ ਤੂੰ ਮੇਰਾ ਹੱਥ ਕਦੇ ਨਹੀਂ ਛੱਡਿਆ। ਜਦੋਂ ਮੈਂ ਕਮਜ਼ੋਰ ਪੈ ਰਿਹਾ ਸੀ, ਤੂੰ ਮੇਰੀ ਢਾਲ ਬਣ ਕੇ ਖੜ੍ਹੀ ਰਹੀ। ਤੂੰ ਮੈਨੂੰ ਹਰ ਕਦਮ 'ਤੇ ਸਮਝਿਆ ਹੈ, ਸੰਭਾਲਿਆ ਹੈ, ਅਤੇ ਇੱਕ ਬਿਹਤਰ ਇਨਸਾਨ ਬਣਾਇਆ ਹੈ।</p>
+                  <p class="hinglish-text">Tune mujhe har mod par sambhala hai. Zindagi chahe kitne vi imtihaan le, jab tak tera haath mere haath mein hai, mujhe duniya ki kisi mushkil ka darr nahi.</p>
+                </div>
+
+                <!-- Section 5: Promises -->
+                <div class="letter-chapter promises-box">
+                  <div class="chapter-badge promises-badge">💍 Mera Hamesha Layi Vaada (My Promises To You)</div>
+                  <p class="punjabi-text">ਅੱਜ ਮੈਂ ਤੇਰੇ ਨਾਲ ਦਿਲ ਦੇ ਹਰ ਕੋਨੇ ਤੋਂ ਇਹ ਪਵਿੱਤਰ ਵਾਅਦੇ ਕਰਦਾ ਹਾਂ:</p>
+                  <ul class="promises-list">
+                    <li>
+                      <span class="promise-icon">🌹</span>
+                      <div><strong>ਮੈਂ ਕਦੇ ਵੀ ਤੇਰਾ ਸਾਥ ਨਹੀਂ ਛੱਡਾਂਗਾ</strong> — ਚਾਹੇ ਜ਼ਿੰਦਗੀ ਦਾ ਰਸਤਾ ਕਿੰਨਾ ਵੀ ਔਖਾ ਕਿਉਂ ਨਾ ਹੋਵੇ, ਮੇਰਾ ਹੱਥ ਹਮੇਸ਼ਾ ਤੇਰੇ ਹੱਥ ਵਿੱਚ ਰਹੇਗਾ।</div>
+                    </li>
+                    <li>
+                      <span class="promise-icon">🌹</span>
+                      <div><strong>ਤੇਰੇ ਚਿਹਰੇ ਦੇ ਹਾਸੇ ਨੂੰ ਕਦੇ ਫਿੱਕਾ ਨਹੀਂ ਪੈਣ ਦੇਵਾਂਗਾ</strong> — ਤੇਰੇ ਹਰ ਅੱਥਰੂ ਨੂੰ ਮੋਤੀ ਵਾਂਗੂ ਸਾਂਭਾਂਗਾ ਅਤੇ ਹਮੇਸ਼ਾ ਤੈਨੂੰ ਹਸਾਵਾਂਗਾ।</div>
+                    </li>
+                    <li>
+                      <span class="promise-icon">🌹</span>
+                      <div><strong>ਉਮਰ ਚਾਹੇ ਢਲ ਜਾਵੇ, ਵਾਲ਼ ਸਫੇਦ ਹੋ ਜਾਣ</strong> — ਪਰ ਤੇਰੇ ਲਈ ਮੇਰਾ ਇਸ਼ਕ ਹਰ ਗੁਜ਼ਰਦੇ ਪਲ ਨਾਲ ਹੋਰ ਡੂੰਘਾ ਤੇ ਅਮਰ ਹੁੰਦਾ ਜਾਵੇਗਾ।</div>
+                    </li>
+                    <li>
+                      <span class="promise-icon">🌹</span>
+                      <div><strong>ਤੈਨੂੰ ਹਮੇਸ਼ਾ ਆਪਣੀ ਰਾਣੀ ਬਣਾ ਕੇ ਰੱਖਾਂਗਾ</strong> — ਕਿਉਂਕਿ ਮੇਰੇ ਦਿਲ ਦੀ ਸਲਤਨਤ ਦੀ ਇਕਲੌਤੀ ਮਾਲਕ ਸਿਰਫ਼ ਤੇ ਸਿਰਫ਼ ਤੂੰ ਹੈਂ!</div>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="letter-chapter">
+                  <div class="chapter-badge">✨ Zindagi Da Har Pal Tere Naal</div>
+                  <p class="punjabi-text">ਲੋਕ ਕਹਿੰਦੇ ਨੇ ਪਿਆਰ ਇੱਕ ਵਾਰ ਹੁੰਦਾ ਹੈ, ਪਰ ਮੈਨੂੰ ਤੇਰੇ ਨਾਲ ਹਰ ਰੋਜ਼, ਹਰ ਘੜੀ, ਹਰ ਪਲ ਨਵਾਂ ਇਸ਼ਕ ਹੁੰਦਾ ਹੈ। 2558 ਦਿਨ ਤਾਂ ਬਸ ਇੱਕ ਸ਼ੁਰੂਆਤ ਸੀ ਮੇਰੀ ਜਾਨ... ਮੈਨੂੰ ਤਾਂ ਤੇਰੇ ਨਾਲ ਅਗਲੇ 100 ਸਾਲ, ਅਗਲੇ ਸੱਤ ਜਨਮ, ਤੇ ਰੱਬ ਦੀ ਦਿੱਤੀ ਹਰ ਇੱਕ ਸਾਹ ਤੇਰੇ ਨਾਮ ਕਰਕੇ ਬਿਤਾਉਣੀ ਹੈ।</p>
+                  <p class="hinglish-text">Tu meri aadat vi hai, meri ibaadat vi hai, meri pehli mohabbat vi hai aur meri aakhri manzil vi. Tere naal hi meri duniya shuru hondi hai, te tere te hi aake mukdi hai.</p>
+                </div>
+
+                <!-- Romantic Shayari Card -->
+                <div class="shayari-glow-card">
+                  <div class="quote-mark">“</div>
+                  <p class="shayari-line">ਕੋਈ ਪੁੱਛੇ ਮੇਰੇ ਤੋਂ ਦੁਨੀਆ ਦੀ ਸਭ ਤੋਂ ਸੋਹਣੀ ਚੀਜ਼ ਕੀ ਹੈ,</p>
+                  <p class="shayari-line">ਮੈਂ ਹੱਸ ਕੇ ਕਹਿ ਦੇਵਾਂਗਾ — ਤੇਰੀ ਉਹ ਮਿੱਠੀ ਜਿਹੀ ਮੁਸਕਾਨ!</p>
+                  <p class="shayari-line">ਤੇਰੇ ਬਿਨਾਂ ਨਾ ਕੱਲ੍ਹ ਸੀ, ਨਾ ਅੱਜ ਹਾਂ, ਨਾ ਕੱਲ੍ਹ ਰਹਾਂਗਾ,</p>
+                  <p class="shayari-line highlight">ਮੇਰਾ ਦਿਲ, ਮੇਰੀ ਰੂਹ, ਮੇਰੀ ਹਰ ਧੜਕਣ ਤੇਰੇ ਨਾਮ!</p>
+                  <div class="quote-mark right">”</div>
+                </div>
+
+                <!-- Sign-off -->
+                <div class="letter-signature-block">
+                  <p class="signature-tagline">I love you to infinity and beyond, my love! 💗✨</p>
+                  <div class="signature-names">
+                    <p>ਹਮੇਸ਼ਾ ਸਿਰਫ਼ ਤੇਰਾ,</p>
+                    <h4>ਤੇਰਾ ਪਿਆਰ, ਤੇਰਾ ਹਮਸਫ਼ਰ ♥</h4>
+                    <span class="eng-sign">(Forever & Always Yours)</span>
+                  </div>
+                  <div class="wax-stamp-seal">
+                    <span>♥ SEALED WITH LOVE ♥</span>
+                  </div>
+                </div>
+
+                <!-- Cute Interactive Actions inside Letter -->
+                <div class="letter-action-bar">
+                  <button id="sendKissesBtn" class="kiss-action-btn">💋 Send Flying Kisses!</button>
+                  <button id="playMelodyBtn" class="melody-action-btn">🎵 Play Love Melody</button>
+                  <button id="closeLetterBtn" class="close-action-btn">Fold Back Envelope 💌</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="restart-wrap">
+            <button id="restartBtn" class="secondary">Replay our little story</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

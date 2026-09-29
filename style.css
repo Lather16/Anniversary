@@ -1,0 +1,185 @@
+:root{
+  --bg:#080509;
+  --panel:rgba(22,14,21,.72);
+  --pink:#ff1670;
+  --pink2:#ff4f9a;
+  --soft:#ffd6e6;
+  --white:#fff8fb;
+  --muted:#b9a9b2;
+  --line:rgba(255,157,198,.48);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--white);font-family:Inter,system-ui,sans-serif}
+body{overflow-x:hidden}
+button,input{font:inherit}
+button{cursor:pointer}
+#app{min-height:100vh;display:grid;place-items:center;padding:24px;position:relative;overflow:hidden;background:
+ radial-gradient(circle at 20% 15%,rgba(255,28,112,.13),transparent 30%),
+ radial-gradient(circle at 80% 85%,rgba(255,99,177,.08),transparent 35%),#080509}
+.ambient{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.ambient-a{width:320px;height:320px;background:#ff0f6b22;left:-100px;top:-100px}
+.ambient-b{width:380px;height:380px;background:#ff68ad16;right:-130px;bottom:-120px}
+.phone-shell{width:min(100%,520px);min-height:min(880px,calc(100vh - 48px));position:relative;border:1px solid rgba(255,255,255,.08);border-radius:34px;overflow:hidden;background:linear-gradient(160deg,#120b11,#050406 70%);box-shadow:0 30px 100px #000}
+.screen{display:none;min-height:min(880px,calc(100vh - 48px));padding:34px 24px;position:relative}
+.screen.active{display:flex;flex-direction:column}
+.glass{background:var(--panel);backdrop-filter:blur(18px);border:1px solid var(--line);box-shadow:0 20px 60px #0008}
+#lock-screen{align-items:center;justify-content:center}
+.lock-card{width:min(100%,420px);padding:24px 22px;border-radius:24px;transform:rotate(-1.2deg)}
+.days-banner{text-align:center;padding:12px 14px;background:rgba(255,22,112,.08);border:1px solid rgba(255,157,198,.22);border-radius:18px;margin-bottom:14px;position:relative;overflow:hidden;box-shadow:inset 0 0 20px rgba(255,22,112,.08),0 8px 24px rgba(0,0,0,.25)}
+.days-tag{font-size:11px;font-weight:700;letter-spacing:.18em;color:#ff9bc3;text-transform:uppercase}
+.days-counter-display{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:2px 0}
+.days-number{font-family:"Cormorant Garamond",serif;font-size:54px;font-weight:700;line-height:1;color:#fff;background:linear-gradient(135deg,#fff 20%,#ffd2e4 60%,#ff358c 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(255,43,131,.4);display:inline-block;transition:transform .3s cubic-bezier(.175,.885,.32,1.275)}
+.days-number.counter-done{animation:heartPop .6s ease}
+@keyframes heartPop{0%{transform:scale(1)}50%{transform:scale(1.12);filter:drop-shadow(0 0 12px #ff2b83)}100%{transform:scale(1)}}
+.days-text{font-size:15px;font-weight:700;letter-spacing:.15em;color:#ff5f9e}
+.days-subtitle{font-size:12px;color:#d1b8c6;margin-top:2px;font-style:italic}
+.lock-divider{display:flex;align-items:center;justify-content:center;margin:14px 0 16px;position:relative}
+.lock-divider::before,.lock-divider::after{content:"";flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(255,157,198,.3),transparent)}
+.lock-divider span{padding:0 10px;color:#ff3884;font-size:13px;text-shadow:0 0 8px #ff3884}
+.eyebrow{font-size:12px;letter-spacing:.14em;font-weight:700;color:#ff9bc3;text-transform:uppercase}
+h1,h2{font-family:"Cormorant Garamond",serif;line-height:.98;margin:10px 0}
+h1{font-size:46px}
+h2{font-size:54px}
+h1 span,.eyebrow span{color:#ff1f78}
+.question{font-size:16px;color:#eee0e7;margin:22px 0 12px}
+input{width:100%;height:54px;border-radius:15px;border:1px solid #ff8fba;background:#120b12;color:white;padding:0 16px;outline:none}
+input:focus{box-shadow:0 0 0 3px #ff167033}
+.primary,.secondary{border:0;border-radius:15px;min-height:54px;padding:0 18px;font-weight:700;transition:.2s transform,.2s filter}
+.primary{background:linear-gradient(135deg,#ff2b83,#ff0d63);color:white;box-shadow:0 10px 30px #ff0d6340}
+.primary:hover,.secondary:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.lock-card .primary{width:100%;margin-top:12px}
+.secondary{background:#3b3540;color:#fff;border:1px solid #ffffff16}
+.progress{font-size:12px;color:#9f9099;margin-top:15px}
+.error{min-height:18px;color:#ff759f;font-size:12px;margin-top:8px}
+.top-copy{margin:auto 0 22px}
+.top-copy h2{font-size:50px;max-width:390px}
+.top-copy p{color:var(--muted);margin:0}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;width:min(100%,430px);margin:auto}
+.card{aspect-ratio:1/1;border:0;border-radius:12px;padding:0;background:transparent;perspective:800px}
+.card-inner{height:100%;width:100%;position:relative;transition:transform .45s;transform-style:preserve-3d}
+.card.flipped .card-inner,.card.matched .card-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;overflow:hidden}
+.back{background:linear-gradient(145deg,#ffd6e6,#f7a5c8);display:grid;place-items:center;color:#ff4f91;font-size:24px}
+.front{transform:rotateY(180deg);background:#171019}
+.front img{width:100%;height:100%;object-fit:cover;display:block}
+.card.matched .front{box-shadow:0 0 0 2px #ff2b83,0 0 24px #ff2b8366}
+.game-footer{display:flex;justify-content:space-between;color:#b7a9b1;font-size:12px;margin-top:18px}
+#proposal-screen{justify-content:center}
+.proposal-wrap{position:relative;min-height:100%;display:flex;align-items:center;justify-content:center}
+.photo-collage{position:absolute;inset:5% 4% 20%;display:grid;grid-template-columns:repeat(4,1fr);gap:7px;opacity:.32;filter:saturate(.8)}
+.photo-collage img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+.proposal-content{position:relative;text-align:center;z-index:2;text-shadow:0 3px 20px #000}
+.proposal-content h2{font-size:62px;max-width:450px}
+.tiny-heart{font-size:80px;color:#ffd3e3;line-height:.8;margin:18px 0}
+.proposal-actions{display:flex;gap:12px;justify-content:center}
+.proposal-actions button{min-width:150px}
+.final-content{margin:auto;text-align:center;position:relative;z-index:2;width:100%;max-width:470px;padding:10px 0 24px}
+.final-content h2{font-size:52px}
+.final-subtext{color:#c6b7c0;line-height:1.7;max-width:410px;margin:14px auto 20px}
+.final-heart{font-size:74px;color:#ff2b83;animation:pulse 1.2s infinite;margin-bottom:16px}
+@keyframes pulse{50%{transform:scale(1.15)}}
+.fireworks{position:absolute;inset:-20%;background:
+ radial-gradient(circle at 20% 20%,#ff3d8a 0 2px,transparent 3px),
+ radial-gradient(circle at 75% 25%,#ff9bc4 0 2px,transparent 3px),
+ radial-gradient(circle at 60% 65%,#fff 0 2px,transparent 3px),
+ radial-gradient(circle at 30% 75%,#ff2b83 0 2px,transparent 3px);
+ background-size:130px 130px,170px 170px,190px 190px,150px 150px;animation:sparkle 2.5s linear infinite;opacity:.8}
+@keyframes sparkle{to{transform:rotate(360deg) scale(1.1)}}
+
+#final-screen{overflow-y:auto;max-height:min(880px,calc(100vh - 48px));padding-top:28px;padding-bottom:40px;scroll-behavior:smooth}
+#final-screen::-webkit-scrollbar{width:6px}
+#final-screen::-webkit-scrollbar-thumb{background:rgba(255,43,131,.4);border-radius:10px}
+
+/* Envelope Card & Button */
+.envelope-container{margin:18px 0 24px}
+.envelope-card-btn{width:100%;background:linear-gradient(145deg,rgba(40,18,34,.85),rgba(20,9,18,.92));border:1.5px solid rgba(255,140,185,.4);border-radius:24px;padding:22px 18px;display:flex;align-items:center;gap:18px;text-align:left;color:white;cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s;box-shadow:0 12px 35px rgba(0,0,0,.4),0 0 25px rgba(255,30,115,.15);position:relative;overflow:hidden}
+.envelope-card-btn:hover{transform:translateY(-3px);border-color:#ff3d8a;box-shadow:0 16px 45px rgba(0,0,0,.5),0 0 35px rgba(255,30,115,.35)}
+.envelope-card-btn::before{content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:skewX(-20deg);transition:.6s}
+.envelope-card-btn:hover::before{left:160%}
+
+.envelope-graphic{width:76px;height:62px;position:relative;flex-shrink:0;perspective:400px}
+.envelope-pocket{width:100%;height:100%;background:linear-gradient(135deg,#ff357d,#be0f53);border-radius:8px;position:relative;box-shadow:0 6px 18px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
+.envelope-flap{position:absolute;top:0;left:0;width:0;height:0;border-left:38px solid transparent;border-right:38px solid transparent;border-top:32px solid #e01b63;transform-origin:top;transition:transform .6s ease;z-index:2}
+.envelope-flap.open{transform:rotateX(180deg);z-index:0}
+.wax-seal{width:28px;height:28px;background:radial-gradient(circle,#ff1f73,#7d052a);border:1.5px solid #ffb0d1;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,.4),0 0 10px rgba(255,43,131,.6);position:relative;z-index:3;animation:sealPulse 1.8s infinite}
+@keyframes sealPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.envelope-badge{position:absolute;bottom:4px;right:6px;font-size:14px}
+
+.envelope-info{flex:1}
+.envelope-pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.18em;color:#ff9bc3;background:rgba(255,22,112,.2);padding:3px 10px;border-radius:20px;margin-bottom:6px;border:1px solid rgba(255,140,185,.3)}
+.envelope-title{font-family:"Cormorant Garamond",serif;font-size:26px;margin:0 0 4px;color:#fff;line-height:1.1}
+.envelope-desc{font-size:12px;color:#caa6ba;margin:0;line-height:1.4}
+
+/* Big Love Letter Unfolded Parchment */
+.love-letter-wrapper{margin:20px 0 28px;perspective:1000px}
+.love-letter-wrapper.open{animation:unfoldLetter .75s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes unfoldLetter{0%{opacity:0;transform:translateY(30px) scale(.92)}100%{opacity:1;transform:translateY(0) scale(1)}}
+
+.love-letter-parchment{background:linear-gradient(175deg,#fffdfd 0%,#fff2f6 45%,#ffeaf2 100%);color:#2d081b;border:2px solid rgba(255,140,185,.5);border-radius:24px;padding:34px 22px;text-align:left;position:relative;box-shadow:0 25px 80px rgba(0,0,0,.65),0 0 45px rgba(255,43,131,.25)}
+.letter-corner-deco{position:absolute;font-size:20px;pointer-events:none;opacity:.85}
+.letter-corner-deco.top-left{top:12px;left:14px}
+.letter-corner-deco.top-right{top:12px;right:14px}
+.letter-corner-deco.bottom-left{bottom:14px;left:14px}
+.letter-corner-deco.bottom-right{bottom:14px;right:14px}
+
+.letter-header{text-align:center;margin-bottom:24px}
+.letter-date-chip{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.16em;color:#9b0e45;background:rgba(255,43,131,.12);padding:5px 14px;border-radius:20px;border:1px solid rgba(255,43,131,.25);margin-bottom:12px}
+.letter-recipient{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:700;color:#85073c;margin:0 0 6px;line-height:1.15;text-shadow:0 1px 2px rgba(255,255,255,.8)}
+.letter-subhead{font-size:14px;font-style:italic;color:#6d2243;margin-bottom:10px}
+.letter-flourish{color:#ff3884;font-size:13px;letter-spacing:.2em;opacity:.7}
+
+.letter-body{display:flex;flex-direction:column;gap:18px}
+.letter-chapter{position:relative}
+.chapter-badge{display:inline-block;font-size:12px;font-weight:700;color:#910a40;background:rgba(255,30,115,.12);padding:4px 12px;border-radius:12px;margin-bottom:8px;border:1px solid rgba(255,140,185,.3)}
+.punjabi-text{font-size:15px;line-height:1.75;color:#2c081b;margin:0 0 8px}
+.hinglish-text{font-size:13.5px;line-height:1.65;color:#671a3e;font-style:italic;background:rgba(255,43,131,.05);padding:10px 14px;border-left:3.5px solid #ff2b83;border-radius:0 10px 10px 0;margin:0}
+
+/* Promises Special Box */
+.promises-box{background:linear-gradient(135deg,rgba(255,235,243,.8),rgba(255,215,232,.5));border:1.5px dashed #ff4f97;border-radius:18px;padding:18px 16px;box-shadow:inset 0 0 20px rgba(255,43,131,.06)}
+.promises-badge{background:#ff2b83;color:#fff}
+.promises-list{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:12px}
+.promises-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.6;color:#350a21}
+.promise-icon{font-size:16px;flex-shrink:0;margin-top:2px}
+
+/* Shayari Glowing Card */
+.shayari-glow-card{background:linear-gradient(135deg,#36081e,#1c0410);color:#ffe4ef;border-radius:20px;padding:24px 18px;text-align:center;border:1px solid rgba(255,157,198,.45);box-shadow:0 12px 35px rgba(0,0,0,.35),0 0 25px rgba(255,43,131,.25);position:relative;margin:12px 0}
+.quote-mark{font-size:40px;color:#ff3d8a;line-height:1;font-family:"Cormorant Garamond",serif;opacity:.6}
+.quote-mark.right{text-align:right}
+.shayari-line{font-family:"Cormorant Garamond",serif;font-size:20px;line-height:1.45;margin:4px 0;letter-spacing:.02em}
+.shayari-line.highlight{color:#ff85b6;font-weight:700;font-size:22px;margin-top:8px}
+
+/* Signature & Wax Seal */
+.letter-signature-block{text-align:center;padding:16px 0 10px;border-top:1px dashed rgba(255,120,175,.4);margin-top:8px}
+.signature-tagline{font-size:15px;font-weight:600;color:#a80a4b;margin-bottom:12px}
+.signature-names p{font-size:14px;color:#61183b;margin:0 0 2px}
+.signature-names h4{font-family:"Cormorant Garamond",serif;font-size:28px;color:#85073c;margin:2px 0}
+.eng-sign{font-size:13px;font-style:italic;color:#7e224e}
+.wax-stamp-seal{display:inline-block;margin-top:14px;padding:6px 16px;background:radial-gradient(circle,#b80f4f,#6e062c);color:#fff;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.18em;box-shadow:0 4px 14px rgba(0,0,0,.25),0 0 12px rgba(255,43,131,.4)}
+
+/* Action Buttons inside Letter */
+.letter-action-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px;padding-top:14px;border-top:1px solid rgba(255,140,185,.3)}
+.kiss-action-btn,.melody-action-btn,.close-action-btn{border:0;border-radius:12px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:6px}
+.kiss-action-btn{background:linear-gradient(135deg,#ff2b83,#ff0d63);color:#fff;box-shadow:0 6px 18px rgba(255,13,99,.35)}
+.melody-action-btn{background:linear-gradient(135deg,#7e22ce,#a855f7);color:#fff;box-shadow:0 6px 18px rgba(168,85,247,.35)}
+.close-action-btn{background:rgba(80,20,45,.1);color:#6b153b;border:1px solid rgba(255,140,185,.4)}
+.kiss-action-btn:hover,.melody-action-btn:hover,.close-action-btn:hover{transform:translateY(-2px)}
+
+/* Flying Kiss & Hearts Particles */
+.floating-kiss{position:fixed;pointer-events:none;z-index:9999;font-size:26px;animation:flyKiss 2s ease-out forwards}
+@keyframes flyKiss{0%{opacity:1;transform:translate(0,0) scale(.5) rotate(0deg)}50%{transform:translate(var(--dx),-120px) scale(1.3) rotate(var(--rot))}100%{opacity:0;transform:translate(calc(var(--dx) * 1.5),-260px) scale(1) rotate(calc(var(--rot) * 2))}}
+
+.restart-wrap{margin-top:24px}
+
+@media(max-width:560px){
+ #app{padding:0}
+ .phone-shell{width:100%;min-height:100vh;border-radius:0;border:0}
+ .screen{min-height:100vh;padding:26px 16px}
+ h1{font-size:38px}
+ h2,.top-copy h2{font-size:42px}
+ .proposal-content h2{font-size:44px}
+ .final-content h2{font-size:40px}
+ .love-letter-parchment{padding:24px 14px}
+ .letter-recipient{font-size:23px}
+ .shayari-line{font-size:17px}
+ .shayari-line.highlight{font-size:18px}
+}
